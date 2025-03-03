@@ -5,14 +5,15 @@ import Transaction from "./Transaction";
 const Transactions = ({ transaction }) => {
   return (
     <Box>
-      <Typography>Transaction History</Typography>
+      <Typography variant="h4" sx={{ mt: 2 }}>
+        Transaction History
+      </Typography>
       <Divider />
       <List>
         {transaction.map((transaction) => (
           <Transaction transaction={transaction} />
         ))}
       </List>
-      
     </Box>
   );
 };

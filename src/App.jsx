@@ -1,44 +1,34 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, styled } from "@mui/material";
 import Balance from "./components/Balance";
 import ExpenseCard from "./components/ExpenseCard";
 import NewTransactions from "./components/NewTransactions";
 import Transactions from "./components/Transactions";
 
-
+const component = styled(Box)`
+  display: flex;
+`;
 function App() {
+  const [transaction, settransaction] = useState([]);
 
-  const [transaction, settransaction] = useState([
-    {
-      id: 1,
-      text: "momos",
-      amount: -20,
-    },
-    { id: 2, text: "momos", amount: -20 },
-    { id: 3, text: "salery", amount: 2220 },
-    { id: 4, text: "momos", amount: -20 }
-  ]);
   return (
-    <div>
-      <Typography
-        className=" mt-32
-       text-[100px] text-blue-950 transform-3d"
-      >
+    <Box>
+      <h1 className=" text-center  text-4xl  text-blue-950 ">
         Expense Tracker
-      </Typography>
+      </h1>
 
-      <Box>
+      <component>
         <Box>
-          <Balance />
-          <ExpenseCard />
-          <NewTransactions />
+          <Balance transaction={transaction} />
+          <ExpenseCard transaction={transaction} />
+          <NewTransactions settransaction={settransaction} />
         </Box>
         <Box>
-          <Transactions transaction={transaction}/>
+          <Transactions transaction={transaction} />
         </Box>
-      </Box>
-    </div>
+      </component>
+    </Box>
   );
 }
 
